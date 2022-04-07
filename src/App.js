@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import Quotes from './components/Quotes';
 import './App.css';
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div className="App">
       <Routes>
         <>
-          <Route path="/" />
+          <Route path="/" element={<Quotes />} />
           <Route path="/*" element={<Navigate to="/" />} />
 
         </>
