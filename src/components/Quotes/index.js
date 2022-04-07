@@ -1,25 +1,20 @@
-import { useState } from 'react';
 import { Button } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchGetQuote } from '../../redux/main/quotes';
 
 const Quotes = () => {
-  const [quote, setQuote] = useState('Click the button to get a random quote!');
+  const quote = useSelector((state) => state.quoteAPI);
+  const dispatch = useDispatch();
 
-  const getQuote = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/greetings');
-      const data = await response.json();
-      console.log(data);
-      setQuote(data.message);
-    } catch (err) {
-      console.log(err);
-    }
+  const clickButton = () => {
+    dispatch(fetchGetQuote());
   };
 
   return (
     <>
       <div className="quotes_container">
         <span>{quote}</span>
-        <Button type="primary" onClick={getQuote}>Random Quote.</Button>
+        <Button type="primary" onClick={clickButton}>Random Quote.</Button>
       </div>
     </>
   );
